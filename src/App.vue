@@ -1,55 +1,31 @@
 <script>
 import Author from "./Author.js";
+import AuthorComponent from "./components/AuthorComponent.vue";
 
 export default {
 
+  components: {
+    AuthorComponent
+  },
+
   data() {
+    let victorHugo = new Author("Victor", "Hugo", 1802);
+    let paulVerlaine = new Author("Paul", "Verlaine", 1844);
     let arthurRimbaud = new Author("Arthur", "Rimbaud", 1854);
 
     return {
-      author: arthurRimbaud
-    }
-  },
-
-  methods: {
-    addBook() {
-      this.author.addBook(this.bookToAdd);
-      this.bookToAdd = "";
-    }
-  },
-
-  computed: {
-    authorHasWrittenBooks() {
-      return this.author.books.length > 0 ? 'Yes' : 'No'
+      author1: victorHugo,
+      author2: paulVerlaine,
+      author3: arthurRimbaud
     }
   }
 }
 </script>
 
 <template>
-  <h1> My Favourite Author </h1>
-  <div>
-    <label>First Name : </label>{{ author.firstName }}
-  </div>
-  <div>
-    <label>Last Name : </label>{{ author.lastName }}
-  </div>
-  <div>
-    <label>Has ever written a book : </label>{{ authorHasWrittenBooks }}
-  </div>
-  <div v-if="author.isClassic()">CLASSIC</div>
-  <h2>Books</h2>
-  <ul>
-    <li v-for="book in author.books">
-      {{ book }}
-    </li>
-  </ul>
-
-  <div>
-    <p>Add a book :</p>
-    <input v-model="bookToAdd" />
-    <button @click="addBook">Add</button>
-  </div>
+  <AuthorComponent :authorProperty="author1" />
+  <AuthorComponent :authorProperty="author2" />
+  <AuthorComponent :authorProperty="author3" />
 </template>
 
 <style scoped>
