@@ -1,32 +1,24 @@
 <script>
-import Author from "./Author.js";
-import AuthorComponent from "./components/AuthorComponent.vue";
-
 export default {
-
-  components: {
-    AuthorComponent
-  },
-
   data() {
-    let victorHugo = new Author("Victor", "Hugo", 1802);
-    let paulVerlaine = new Author("Paul", "Verlaine", 1844);
-    let arthurRimbaud = new Author("Arthur", "Rimbaud", 1854);
-
     return {
-      author1: victorHugo,
-      author2: paulVerlaine,
-      author3: arthurRimbaud
+      title: "Authors with Vue Router"
     }
   }
 }
 </script>
 
 <template>
-  <AuthorComponent :authorProperty="author1" />
-  <AuthorComponent :authorProperty="author2" />
-  <AuthorComponent :authorProperty="author3" />
+  <h1>{{ title }}</h1>
+  <nav>
+    <router-link to="/">Go to Home</router-link>
+    <router-link to="/authors">Go to Auhtors page</router-link>
+  </nav>
+  <router-view></router-view>
 </template>
 
 <style scoped>
+a + a {
+  margin-left: 10px;
+}
 </style>
