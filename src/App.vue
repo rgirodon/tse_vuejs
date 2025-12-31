@@ -4,10 +4,23 @@ import Author from "./Author.js";
 export default {
 
   data() {
-    let arthurRimbaud = new Author("Arthur", "Rimbaud");
+    let arthurRimbaud = new Author("Arthur", "Rimbaud", 1854);
 
     return {
       author: arthurRimbaud
+    }
+  },
+
+  methods: {
+    addBook() {
+      this.author.addBook(this.bookToAdd);
+      this.bookToAdd = "";
+    }
+  },
+
+  computed: {
+    authorHasWrittenBooks() {
+      return this.author.books.length > 0 ? 'Yes' : 'No'
     }
   }
 }
@@ -20,6 +33,22 @@ export default {
   </div>
   <div>
     <label>Last Name : </label>{{ author.lastName }}
+  </div>
+  <div>
+    <label>Has ever written a book : </label>{{ authorHasWrittenBooks }}
+  </div>
+  <div v-if="author.isClassic()">CLASSIC</div>
+  <h2>Books</h2>
+  <ul>
+    <li v-for="book in author.books">
+      {{ book }}
+    </li>
+  </ul>
+
+  <div>
+    <p>Add a book :</p>
+    <input v-model="bookToAdd" />
+    <button @click="addBook">Add</button>
   </div>
 </template>
 
