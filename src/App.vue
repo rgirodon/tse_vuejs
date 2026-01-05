@@ -7,7 +7,8 @@ export default {
     let arthurRimbaud = new Author("Arthur", "Rimbaud", 1854);
 
     return {
-      author: arthurRimbaud
+      author: arthurRimbaud,
+      bookToAdd : ""
     }
   },
 
@@ -37,7 +38,10 @@ export default {
   <div>
     <label>Has ever written a book : </label>{{ authorHasWrittenBooks }}
   </div>
+
   <div v-if="author.isClassic()">CLASSIC</div>
+  <div v-else>MODERN</div>
+
   <h2>Books</h2>
   <ul>
     <li v-for="book in author.books">
