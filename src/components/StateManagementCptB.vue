@@ -1,18 +1,23 @@
 <script>
-import { store } from '../store.js'
+import { useCounterStore } from '../store.js';
+import { mapState } from 'pinia';
+import { mapActions } from 'pinia';
 
 export default {
-  data() {
-    return {
-      store
-    }
+  
+  computed: {
+    ...mapState(useCounterStore, ["count"])
+  },
+
+  methods : {
+    ...mapActions(useCounterStore, ['incrementSimple']),
   }
 }
 </script>
 
 <template>
-    <button @click="store.incrementSimple()">
-        From B (simple increment) : {{ store.count }}
+    <button @click="incrementSimple()">
+        From B (simple increment) : {{ count }}
     </button>
 </template>
 
