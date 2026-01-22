@@ -9,23 +9,22 @@ export default {
   },
 
   data() {
-    let victorHugo = new Author("Victor", "Hugo", 1802);
-    let paulVerlaine = new Author("Paul", "Verlaine", 1844);
-    let arthurRimbaud = new Author("Arthur", "Rimbaud", 1854);
+    let authors = [
+      new Author("Victor", "Hugo", 1802),
+      new Author("Paul", "Verlaine", 1844),
+      new Author("Arthur", "Rimbaud", 1854),
+      new Author("Albert", "Camus", 1913),
+    ];
 
     return {
-      author1: victorHugo,
-      author2: paulVerlaine,
-      author3: arthurRimbaud
+      authors: authors
     }
   }
 }
 </script>
 
 <template>
-  <AuthorComponent :authorProperty="author1" />
-  <AuthorComponent :authorProperty="author2" />
-  <AuthorComponent :authorProperty="author3" />
+  <AuthorComponent v-for="author in authors" :authorProperty="author" />
 </template>
 
 <style scoped>
